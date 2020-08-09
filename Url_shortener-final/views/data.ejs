@@ -76,48 +76,33 @@ li.dropdown {
 
 <script>
   window.onload = function() {
-  var chart = new CanvasJS.Chart("chartContainer", {
-    animationEnabled: true,
-    title: {
-      text: "Board Search - 2020"
-    },
-    data: [{
-      type: "pie",
-      startAngle: 240,
-      yValueFormatString: "##0.00\"%\"",
-      indexLabel: "{label} {y}",
-      dataPoints: [
-        {y: 8.6, label: "Karnataka"},
-        {y: 5.31, label: "Telanaga"},
-        {y: 7.06, label: "Maharasthra"},
-        {y: 6.91, label: "TamilNadu"},
-        {y: 2.26, label: "NewDelhi"}
-      ]
-    }]
-  });
-  chart.render();
-
-  var chart2 = new CanvasJS.Chart("chartContainer2", {
-    animationEnabled: true,
-    title: {
-      text: "School Search - 2020"
-    },
-    data: [{
-      type: "pie",
-      startAngle: 240,
-      yValueFormatString: "##0.00\"%\"",
-      indexLabel: "{label} {y}",
-      dataPoints: [
-        {y: 1.6, label: "A"},
-        {y: 5.31, label: "B"},
-        {y: 7.06, label: "C"},
-        {y: 1.91, label: "D"},
-        {y: 4.26, label: "E"}
-      ]
-    }]
-  });
-  chart2.render();
-
+    var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Top Oil Reserves"
+	},
+	axisY: {
+		title: "Reserves(MMbbl)"
+	},
+	data: [{
+		type: "column",
+		showInLegend: true,
+		legendMarkerColor: "grey",
+		legendText: "MMbbl = one million barrels",
+		dataPoints: [      
+			{ y: 300878, label: "Venezuela" },
+			{ y: 266455,  label: "Saudi" },
+			{ y: 169709,  label: "Canada" },
+			{ y: 158400,  label: "Iran" },
+			{ y: 142503,  label: "Iraq" },
+			{ y: 101500, label: "Kuwait" },
+			{ y: 97800,  label: "UAE" },
+			{ y: 80000,  label: "Russia" }
+		]
+	}]
+});
+chart.render();
   }
   </script>
   </div>

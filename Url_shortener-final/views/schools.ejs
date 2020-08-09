@@ -127,25 +127,26 @@ li.dropdown {
 
 <div class="row" style="margin-top: 20px;margin-bottom: 20px;">
     <div class="select col-4 offset-1">
-        <select name="slct" id="slct">
+        <select name="slct" id="slctBoard">
           <option selected disabled>Board</option>
-          <option value="1">CBSE</option>
-          <option value="2">Karnataka</option>
-          <option value="3">Telangana</option>
-          <option value="3">Maharasthra</option>
-          <option value="3">Tamil Nadu</option>
+          <option value="CBSE">CBSE</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Maharasthra">Maharasthra</option>
+          <option value="TamilNadu">Tamil Nadu</option>
         </select>
     </div>
     <div class="select col-4 offset-1">
-        <select name="slct" id="slct">
+        <select name="slct" id="slctSchool">
           <option selected disabled>School</option>
-          <option value="1">A</option>
-          <option value="2">B</option>
-          <option value="3">C</option>
-          <option value="3">D</option>
-          <option value="3">E</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
         </select>
     </div>
+    <button style="margin-left: 5px;" class="btn btn-success" type="submit" onclick="searchSchools()">Search</button>
 </div>
 
 
@@ -194,9 +195,20 @@ chart.render();
 </script>
 </head>
 <body>
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <div class="row offset-2">
+        <h3 id="selectedBoard" class="col-4 offset-2"></h3>
+        <h3 id="selectedSchool" class="col-4"></h3></div>
+<div id="chartContainer" style="height: 300px; width: 100%;display: none;"></div>
 
 
+<script>  function searchSchools() {
+    var x = document.getElementById("slctBoard").value;
+    var y = document.getElementById("slctSchool").value;
+    document.getElementById("selectedBoard").innerHTML = x;
+    document.getElementById("selectedSchool").innerHTML = y;
+    var s = document.getElementById("chartContainer");
+    s.style.display = "block";
+  }</script>
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>
