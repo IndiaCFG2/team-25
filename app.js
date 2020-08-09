@@ -21,15 +21,17 @@ app.use(express.static(__dirname + "/public"));
 
 const userService = require("./user-service");
 
+var middleware = require("../middleware");
+
 app.get("/signup", (req, res) => {
   res.render("register");
 });
 
-app.get("/lessons", (req, res) => {
+app.get("/lessons", middleware.isAuthenticated, (req, res) => {
   res.render("lesson");
 });
 
-app.get("/main", (req, res) => {
+app.get("/main", middleware.isAuthenticated, (req, res) => {
   res.render("main");
 });
 
