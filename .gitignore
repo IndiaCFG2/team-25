@@ -1,3 +1,5 @@
+.env
+serviceAccountKey.json
 Team*.zip
 *.pem
 *.ppk
@@ -5,4 +7,4 @@ Team*.zip
 *.key
 *.ovpn
 
-node_modules
+node_modules/

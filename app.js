@@ -1,32 +1,104 @@
-const links = require('./data/data1.js');
+require("dotenv").config();
 
-const express = require('express');
+const admin = require("firebase-admin");
+const serviceAccount = require("./serviceAccountKey.json");
 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+const db = admin.firestore();
+
+const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
+const router = express.Router();
 
-var port = process.env.PORT || 3000;
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function(req, res){
-  res.send('Welcome to Our 321 Org Cape mission API')
+app.set("view engine", "ejs");
+
+app.use(express.static(__dirname + "/public"));
+
+const userService = require("./user-service");
+
+var middleware = require("../middleware");
+
+app.get("/signup", (req, res) => {
+  res.render("register");
 });
 
-app.get('/api/links', function(req, res){
- 
-    var response = [];
-    if( typeof req.query.board != 'undefined' && typeof req.query.grade != 'undefined'&& typeof req.query.sub != 'undefined'&& typeof req.query.week != 'undefined'&& typeof req.query.lesson != 'undefined'){
-        response = links.filter(function(link){
-          if((link.board.toLowerCase().includes(req.query.board.toLowerCase()))&&(link.grade.toLowerCase().includes(req.query.grade.toLowerCase()))
-              &&(link.sub.toLowerCase().includes(req.query.sub.toLowerCase()))&&(link.week.toLowerCase().includes(req.query.week.toLowerCase()))
-              &&(link.lesson.toLowerCase().includes(req.query.lesson.toLowerCase()))){
-            return link;
-          }
-        });
-      } else {
-        response = links;
-      }
-    res.json(response);
-  });
+app.get("/lessons", middleware.isAuthenticated, (req, res) => {
+  res.render("lesson");
+});
 
-app.listen(port, function(){
-  console.log('this app is listening on port 3000!')
+app.get("/main", middleware.isAuthenticated, (req, res) => {
+  res.render("main");
+});
+
+app.post("/signuptry", async (req, res) => {
+  let schoolId = req.body.schoolId;
+  let password1 = req.body.password1;
+  let password2 = req.body.password2;
+  try {
+    if (password1 == password2) {
+      const user = await userService.addUser(schoolId, password1);
+      //console.log(res.status());
+      //res.status(201).json(user);
+      res.render("login");
+    } else {
+      //console.log(res.status());
+      res.status(401).json({ error: err.message });
+    }
+  } catch (err) {
+    // console.log(res.status());
+    res.status(401).json({ error: err.message });
+  }
+});
+
+app.get("/signin", (req, res) => {
+  res.render("login");
+});
+
+app.post("/signintry", async (req, res) => {
+  const { schoolId, password } = req.body;
+  try {
+    const user = await userService.authenticate(schoolId, password);
+    res.render("main");
+  } catch (err) {
+    res.status(401).json({ error: err.message });
+  }
+});
+
+app.get("/", (req, res) => {
+  res.render("login");
+});
+
+// router.get("/", (req, res) => {
+//   res.render("index");
+// });
+
+// app.post("/boards", (req, res) => {
+//   let boardName = req.body.boardName;
+//   let grade = req.body.grade;
+//   let subject = req.body.subject;
+//   let week = req.body.week;
+//   let lesson = req.body.lesson;
+//   let url = req.body.url;
+
+//   db.collection(boardName)
+//     .doc(grade)
+//     .collection(subject)
+//     .doc(week)
+//     .collection(lesson)
+//     .add({ link: url })
+//     .then(() => {
+//       console.log("Data added");
+//     });
+// });
+
+// get link - (www.google.com - VNR) <-> www.shortvnr.com
+// db.collection('count').doc('cbse').collection('url').add({clicks: 0})
+
+app.listen(3500, () => {
+  console.log("Board Server started running on port no 3500");
 });

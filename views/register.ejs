@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/css/loginStyle.css"></style>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/css/headerStyle.css"></style>
+</head>
+<body>
+
+	
+<div class="header">
+  <a href="#default" class="logo">321 Foundation</a>
+  <div class="header-right">
+    <a class="active" href="/signin">Login</a>
+  </div>
+</div>
+<br><br>
+<div class="main">
+  <form action="/signuptry" method="POST">
+    <input type="email" id="schoolId" name="schoolId" placeholder="Enter School mail..">
+    <input type="password" id="password" name="password1" placeholder="Enter Password..">
+    <input type="password" id="password" name="password2" placeholder="Confirm Password..">
+
+  <select id="totalStudents" name="totalStudents">
+    <option value="null">Select total approx students from Kg to Grade 5</option>
+      <option value="0-100">0-100</option>
+      <option value="100-250">100-250</option>
+      <option value="250-500">250-500</option>
+      <option value="500+">500+</option>
+    </select>
+
+    <select id="board" name="board">
+      <option value="null">Board</option>
+        <option value="CBSE">CBSE</option>
+        <option value="MAHARASTRA">MAHARASTRA</option>
+        <option value="KARNATAKA">KARNATAKA</option>
+        <option value="TELANGANA">TELANGANA</option>
+        <option value="OTHER">OTHER</option>
+      </select>
+
+
+    <button type="submit" onclick="registerPressed()"">Register</button>
+  </form>
+</div>
+  
+
+<script type="text/javascript"> 
+	function registerPressed()
+{
+  alert('Our admin will approve you soon.');
+}</script>
+
+
+
+</body>
+</html>
