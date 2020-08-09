@@ -25,6 +25,14 @@ app.get("/signup", (req, res) => {
   res.render("register");
 });
 
+app.get("/lessons", (req, res) => {
+  res.render("lesson");
+});
+
+app.get("/main", (req, res) => {
+  res.render("main");
+});
+
 app.post("/signuptry", async (req, res) => {
   let schoolId = req.body.schoolId;
   let password1 = req.body.password1;
