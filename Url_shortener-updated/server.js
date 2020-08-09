@@ -14,6 +14,17 @@ app.get('/', async (req, res) => {
   const shortUrls = await ShortUrl.find()
   res.render('index', { shortUrls: shortUrls })
 })
+//data our
+app.get('/data', async (req, res) => {
+  const shortUrls = await ShortUrl.find()
+  res.render('data', { shortUrls: shortUrls })
+})
+ //data from schools
+app.get('/schools', async (req, res) => {
+  const shortUrls = await ShortUrl.find()
+  res.render('schools', { shortUrls: shortUrls })
+})
+
 
 app.post('/shortUrls', async (req, res) => {
   await ShortUrl.create({ full: req.body.fullUrl })

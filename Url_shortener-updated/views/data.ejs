@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/views/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>JP | data</title>
+</head>
+<body>
+  <div class="container">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/data">Data</a></li>
+      <li class="dropdown">
+        <a href="/schools" class="dropbtn">Schools</a>
+      </li>
+    </ul>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #2c3e50;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: rgba(69, 69, 85, 0.455);
+  text-decoration: none;
+  color: #f1f1f1;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+
+
+
+<script>
+  window.onload = function() {
+  var chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: true,
+    title: {
+      text: "Board Search - 2020"
+    },
+    data: [{
+      type: "pie",
+      startAngle: 240,
+      yValueFormatString: "##0.00\"%\"",
+      indexLabel: "{label} {y}",
+      dataPoints: [
+        {y: 8.6, label: "Karnataka"},
+        {y: 5.31, label: "Telanaga"},
+        {y: 7.06, label: "Maharasthra"},
+        {y: 6.91, label: "TamilNadu"},
+        {y: 2.26, label: "NewDelhi"}
+      ]
+    }]
+  });
+  chart.render();
+
+  var chart2 = new CanvasJS.Chart("chartContainer2", {
+    animationEnabled: true,
+    title: {
+      text: "School Search - 2020"
+    },
+    data: [{
+      type: "pie",
+      startAngle: 240,
+      yValueFormatString: "##0.00\"%\"",
+      indexLabel: "{label} {y}",
+      dataPoints: [
+        {y: 1.6, label: "A"},
+        {y: 5.31, label: "B"},
+        {y: 7.06, label: "C"},
+        {y: 1.91, label: "D"},
+        {y: 4.26, label: "E"}
+      ]
+    }]
+  });
+  chart2.render();
+
+  }
+  </script>
+  </div>
+  <div class="row">
+    <div id="chartContainer" class="col-6" style="height: 300px; width: 100%;"></div>
+    <div id="chartContainer2" class="col-6" ></div>
+  </div>
+  
+
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
